@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>ICL</title>
+</head>
+<body>
+<form method="post"  enctype="multipart/form-data">
+
+Image:
+<input type="file" name="image">
+
+<input type="submit" name="submit" value="Upload">
+
+
+ </form>
+<?html
+
+$servername = "localhost";
+$username = "icljkcom_user";
+$password = "jat$$$@123";
+$dbname = "icljkcom_db";
+if (isset($_POST['submit'])){
+    if (getimagesize($_FILES['image']['tmp_image'])==FALSE) {
+        echo "FAILED";
+    }
+    else{
+        $name=addslashes($_FILES['image']['name']);
+        $image=base64_encode(file_get_contents(addslashes($_FILES ['image']['tmp_image'])));
+        savemage($name, $image);
+    }
+}
+// Create connection
+$con = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($con->connect_error) {
+  die("Connection failed: " . $con->connect_error);
+}
+function saveimage($name, $image){
+ $con=mysqli_connect($servername, $username, $password, $dbname);
+$sql="insert into image(name,image) values('$name','$image')";
+$query=mysqli_query($con,$sql);
+if ($query) {
+    echo "Success";
+    }
+    else {
+        echo "not uploaded";
+    }
+    }
+
+    display();
+    function display(){
+        $con=mysqli_connect($servername, $username, $password, $dbname);
+        $sql="select * from STUDENT";
+        $query=mysqli_query($con,$sql);
+        $num=mysqli_num_rows($query);
+        for ($i=0; $i <$num; $i++){
+            $result=mysqli_fetch_array($query);
+            $img=$result['image'];
+            echo '<img srch="data:image;base64,'.$img.'">';
+        }
+    }
+        
+        
+   
+
+?>
+</body>
+</html>

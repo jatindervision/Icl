@@ -1,0 +1,5 @@
+$name= $_POST[‘name’];
+$email= $_POST[‘email’];
+$mobile= $_POST[‘phone’];
+$API_Response_json=json_decode(file_get_contents(“https://2factor.in/API/V1/$APIKey/SMS/$mobile/AUTOGEN"),false);
+$VerificationSessionId= $API_Response_json->Details;

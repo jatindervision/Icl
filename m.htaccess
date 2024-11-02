@@ -1,0 +1,5 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^m\.icljk\.com$
+RewriteRule ^/?$ "https\:\/\/icljk\.com\/m" [R=301,L]
+

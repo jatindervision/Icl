@@ -1,0 +1,1 @@
+<?php include("/home/icljkcom/users/htdocs/security/newsinsert.php"); ?>
